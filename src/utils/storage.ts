@@ -12,3 +12,10 @@ export const saveFoodEntry = (entry: FoodEntry): void => {
   entries.push(entry);
   localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
 };
+
+export const deleteFoodEntry = (entryId:string) : void => {
+  const entries = getFoodEntries()
+  const newEntries = entries.filter(e => e.id !==entryId)
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(newEntries))
+
+}

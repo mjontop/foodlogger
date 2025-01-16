@@ -3,4 +3,5 @@ export interface FoodEntry {
   foodName: string;
   quantity: number;
   dateTime: string;
+  consequence: string;
 }

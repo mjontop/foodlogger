@@ -25,11 +25,13 @@ export function FoodEntryForm() {
       return;
     }
 
+    
     saveFoodEntry({
       id: crypto.randomUUID(),
       foodName: foodName.trim(),
       quantity: parseFloat(quantity),
       dateTime,
+      consequence:""
     });
 
     if(!isAddingAnoter){

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   createColumnHelper,
   flexRender,
@@ -7,8 +7,8 @@ import {
   getSortedRowModel,
 } from '@tanstack/react-table';
 import { FoodEntry } from '../types';
-import { getFoodEntries } from '../utils/storage';
-import { ArrowUpDown } from 'lucide-react';
+import { getFoodEntries, deleteFoodEntry } from '../utils/storage';
+import { ArrowUpDown, TrashIcon } from 'lucide-react';
 import { getReadableDate } from '../utils/date-time';
 
 const columnHelper = createColumnHelper<FoodEntry>();
@@ -36,10 +36,49 @@ const columns = [
     },
     cell: (info) => getReadableDate(info.getValue()),
   }),
+  // columnHelper.accessor('consequence', {
+  //   header: 'Consequence',
+  //   cell: ({ row }) => {
+  //     const [value, setValue] = useState(row.getValue('consequence'));
+
+  //     const handleChange = (e) => {
+  //       setValue(e.target.value);
+  //       // Update the consequence in the data source if needed
+  //       row.original.consequence = e.target.value;
+  //     };
+
+  //     return (
+  //       <input
+  //         type="text"
+  //         value={value}
+  //         onChange={handleChange}
+  //         className="border border-gray-300 rounded px-2 py-1"
+  //       />
+  //     );
+  //   },
+  // }),
+  columnHelper.display({
+    id: 'actions',
+    header: 'Actions',
+    cell: ({ row }) => (
+      <TrashIcon
+        onClick={() => {
+          if (window.confirm('Are you sure you want to delete this entry?')) {
+            console.log(row.original.id)
+            deleteFoodEntry(row.original.id); 
+            window.location.reload(); // Reload to reflect changes
+          }
+        }}
+        className="text-red-600 hover:text-red-800 cursor-pointer"
+      >
+        Delete
+      </TrashIcon>
+    ),
+  }),
 ];
 
 export function FoodLogTable() {
-  const [data] = React.useState(getFoodEntries());
+  const [data] = useState(getFoodEntries());
 
   const table = useReactTable({
     data,
@@ -96,3 +135,4 @@ export function FoodLogTable() {
     </div>
   );
 }
+
