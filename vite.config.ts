@@ -13,7 +13,12 @@ const manifestForPlugin: Partial<VitePWAOptions> = {
       {
         src: "./src/common/logo.svg",
         sizes: "192x192",
-        type: "image/png",
+        type: "image/svg",
+      },
+      {
+        src: "./src/common/logo.svg",
+        sizes: "512x512",
+        type: "image/svg",
       },
     ],
     theme_color: "#171717",
