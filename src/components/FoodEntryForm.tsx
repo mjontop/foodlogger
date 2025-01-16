@@ -33,7 +33,6 @@ export function FoodEntryForm() {
     });
 
     if(!isAddingAnoter){
-      console.log('hey');
       
       navigate({
         to:'/logs'

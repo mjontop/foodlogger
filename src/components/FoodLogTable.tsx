@@ -6,10 +6,10 @@ import {
   useReactTable,
   getSortedRowModel,
 } from '@tanstack/react-table';
-import { format, parseISO } from 'date-fns';
 import { FoodEntry } from '../types';
 import { getFoodEntries } from '../utils/storage';
 import { ArrowUpDown } from 'lucide-react';
+import { getReadableDate } from '../utils/date-time';
 
 const columnHelper = createColumnHelper<FoodEntry>();
 
@@ -34,7 +34,7 @@ const columns = [
         </button>
       );
     },
-    cell: (info) => format(parseISO(info.getValue()), 'MMM d, yyyy HH:mm'),
+    cell: (info) => getReadableDate(info.getValue()),
   }),
 ];
 

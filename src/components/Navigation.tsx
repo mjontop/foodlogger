@@ -1,11 +1,14 @@
-import React from 'react';
 import { Link } from '@tanstack/react-router';
 import { BookOpen, PlusCircle } from 'lucide-react';
+import { AppIcon } from '../assets';
 
 export function Navigation() {
   return (
     <nav className="bg-white shadow-md">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
+      <div className="flex gap-2 items-center">
+          <img src={AppIcon} /><h1 className="font-medium">Food Logger</h1>
+          </div>
         <div className="flex justify-between h-16">
           <div className="flex space-x-8">
             <Link
