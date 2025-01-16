@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 
 const manifestForPlugin: Partial<VitePWAOptions> = {
   registerType: "prompt",
-  includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
+  includeAssets: ["favicon.ico", "./src/common/logo.svg", "apple-touch-icon.png", "masked-icon.svg"],
   manifest: {
     name: "Weather Ups",
     short_name: "Weathe Ups",
